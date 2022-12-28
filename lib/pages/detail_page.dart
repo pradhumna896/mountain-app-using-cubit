@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mountain_app/cubit/app_cubit.dart';
+import 'package:mountain_app/cubit/app_cubit_state.dart';
 import 'package:mountain_app/misc/colors.dart';
 import 'package:mountain_app/widgets/app_buttons.dart';
 import 'package:mountain_app/widgets/app_large_text.dart';
@@ -17,7 +20,10 @@ class _DetailPageState extends State<DetailPage> {
   int selectIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   
+    return BlocBuilder<AppCubits , CubitStates>(builder: (context,state){
+       DetailState detail = state as DetailState;
+      return Scaffold(
       body: Container(
         height: double.maxFinite,
         width: double.maxFinite,
@@ -27,9 +33,9 @@ class _DetailPageState extends State<DetailPage> {
               right: 0,
               child: Container(
                 height: 350,
-                decoration:const BoxDecoration(
+                decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("img/mountain.jpg"),
+                        image: NetworkImage("http://mark.bslmeiyu.com/uploads/${detail.place.img}"),
                         fit: BoxFit.cover)),
               )),
           Positioned(
@@ -40,7 +46,9 @@ class _DetailPageState extends State<DetailPage> {
                   children: [
                     IconButton(
                         color: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          BlocProvider.of<AppCubits>(context).goHOme();
+                        },
                         icon: Icon(Icons.menu))
                   ],
                 ),
@@ -64,10 +72,10 @@ class _DetailPageState extends State<DetailPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         AppLargeText(
-                            text: "Yosemite",
+                            text: detail.place.name,
                             color: Colors.black.withOpacity(0.8)),
                         AppLargeText(
-                            text: "\$ 250", color: AppColors.mainColor),
+                            text: "\$ "+detail.place.price.toString(), color: AppColors.mainColor),
                       ],
                     ),
                     const SizedBox(
@@ -80,7 +88,7 @@ class _DetailPageState extends State<DetailPage> {
                           width: 5,
                         ),
                         AppText(
-                            text: "USA Califonia", color: AppColors.textColor1)
+                            text: detail.place.location, color: AppColors.textColor1)
                       ],
                     ),
                     const SizedBox(
@@ -91,7 +99,7 @@ class _DetailPageState extends State<DetailPage> {
                         Wrap(
                           children: List.generate(5, (index) {
                             return Icon(Icons.star,
-                                color: index < gottonStars
+                                color: index < detail.place.strar
                                     ? AppColors.starColor
                                     : AppColors.textColor2);
                           }),
@@ -100,7 +108,7 @@ class _DetailPageState extends State<DetailPage> {
                           width: 10,
                         ),
                         AppText(
-                          text: "(4.0)",
+                          text: "(5.0)",
                           color: AppColors.textColor2,
                         )
                       ],
@@ -161,8 +169,7 @@ class _DetailPageState extends State<DetailPage> {
                       height: 5,
                     ),
                     AppText(
-                        text:
-                            "You must go for a travel. Travelling helps get rid of pressure. Go to the mountains to see the nature.",
+                        text:detail.place.description,
                         color: AppColors.mainTextColor)
                   ],
                 ),
@@ -189,5 +196,7 @@ class _DetailPageState extends State<DetailPage> {
         ]),
       ),
     );
-  }
+  
+    });
+    }
 }
