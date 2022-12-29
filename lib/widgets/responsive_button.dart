@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mountain_app/misc/colors.dart';
 import 'package:mountain_app/widgets/app_text.dart';
 
+// ignore: must_be_immutable
 class ResponsiveButton extends StatelessWidget {
   double? width;
   bool? isResponsive;
