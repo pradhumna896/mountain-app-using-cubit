@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:mountain_app/model/data_model.dart';
 import 'package:http/http.dart' as http;
 

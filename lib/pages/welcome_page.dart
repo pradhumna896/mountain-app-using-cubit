@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mountain_app/cubit/app_cubit.dart';
 import 'package:mountain_app/misc/colors.dart';
@@ -40,7 +38,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const AppLargeText(text: "Trips"),
-                          AppText(text: "Mountain"),
+                          const AppText(text: "Mountain"),
                           const SizedBox(
                             height: 20,
                           ),

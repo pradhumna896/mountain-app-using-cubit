@@ -15,9 +15,6 @@ class AppLargeText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,
     style:  TextStyle(
-      shadows: [Shadow(
-        offset: Offset(1,1),
-        color: Colors.white)],
       color: color,
       fontSize: size,
       fontWeight: FontWeight.bold

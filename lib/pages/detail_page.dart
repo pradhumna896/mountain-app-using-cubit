@@ -24,7 +24,7 @@ class _DetailPageState extends State<DetailPage> {
     return BlocBuilder<AppCubits , CubitStates>(builder: (context,state){
        DetailState detail = state as DetailState;
       return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: double.maxFinite,
         width: double.maxFinite,
         child: Stack(children: [
